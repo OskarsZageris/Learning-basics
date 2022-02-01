@@ -1,0 +1,5 @@
+Round 1: Computer picked scissors, Player picked rock, Result (Computer)0 : (Player)1 : (Ties)0
+Round 2: Computer picked scissors, Player picked paper, Result (Computer)1 : (Player)1 : (Ties)0
+Round 3: Computer picked paper, Player picked scissors, Result (Computer)1 : (Player)2 : (Ties)0
+Round 4: Computer picked spock, Player picked lizard, Result (Computer)1 : (Player)3 : (Ties)0
+Round 5: Computer picked scissors, Player picked spock, Result (Computer)1 : (Player)4 : (Ties)0
