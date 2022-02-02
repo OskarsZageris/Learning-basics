@@ -42,60 +42,82 @@ class Dog
         $this->father = $father;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getSex()
+    public function getSex(): string
     {
         return $this->sex;
     }
 
-    public function getMother()
+    public function getMother(): string
     {
         return $this->mother;
     }
 
-    public function getFather()
+    public function getFather(): string
     {
         return $this->father;
     }
 
-    public function hasSameMotherAs(Dog $dog): string
-    {
-        if ($this->mother === $dog->getMother()) {
-            return "True";
-        } else return "False";
-    }
 }
+
+$max = new Dog("Max", "male", "Lady", "Rocky");
+$rocky = new Dog("Rocky", "male", "Molly", "Sam");
+$sparky = new Dog("Sparky", "male");
+$buster = new Dog("Buster", "male", "Lady", "Sparky");
+$sam = new Dog("Sam", "male");
+$lady = new Dog("Lady", "female");
+$molly = new Dog("Molly", "female");
+$coco = new Dog("Coco", "female", "Molly", "Sparky");
 
 class DogTest
 {
-    private array $dogs;
-
-    public function __construct(array $dogs)
+    public function hasSameMother($firstDog, $secondDog): bool
     {
-        $this->dogs = $dogs;
+        if ($firstDog->getMother() === $secondDog->getMother()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public function getDogs()
+    public function hasSameFather($firstDog, $secondDog): bool
     {
-        return $this->dogs;
+        if ($firstDog->getFather() === $secondDog->getFather()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function infoAboutTheDog($dog): void
+    {
+        echo "{$dog->getName()} father is {$dog->getFather()}" . PHP_EOL;
+        echo "{$dog->getName()} mother is {$dog->getMother()}" . PHP_EOL;
+        echo "{$dog->getName()} is {$dog->getSex()}" . PHP_EOL;
     }
 
 }
 
-$dogs = new DogTest([
-    $max = new Dog("Max", "male", "Lady", "Rocky"),
-    $rocky = new Dog("Rocky", "male", "Molly", "Sam"),
-    $sparky = new Dog("Sparky", "male"),
-    $buster = new Dog("Buster", "male", "Lady", "Sparky"),
-    $sam = new Dog("Sam", "male"),
-    $lady = new Dog("Lady", "female"),
-    $molly = new Dog("Molly", "female"),
-    $coco = new Dog("Coco", "female", "Molly", "Sparky"),
-]);
+$dogTest = new DogTest;
 
-echo $coco->getName()." has same mother as ".$rocky->getName().": ".$coco->hasSameMotherAs($rocky).PHP_EOL;
-echo $buster->getName()." has same mother as ".$rocky->getName().": ".$buster->hasSameMotherAs($rocky).PHP_EOL;
+$dogTest->infoAboutTheDog($coco);
+$firstDogToCheck = $coco;
+$secondDogToCheck = $buster;
+
+
+if ($dogTest->hasSameMother($firstDogToCheck, $secondDogToCheck)) {
+    echo "{$firstDogToCheck->getName()} and {$secondDogToCheck->getName()} have same mother, {$firstDogToCheck->getMother()}" . PHP_EOL;
+} else {
+    echo "{$firstDogToCheck->getName()} and {$secondDogToCheck->getName()} does not have same mother" . PHP_EOL;
+    echo "{$firstDogToCheck->getName()} have {$firstDogToCheck->getMother()} as mother, but {$secondDogToCheck->getName()} have {$firstDogToCheck->getMother()} as mother" . PHP_EOL;
+}
+if ($dogTest->hasSameFather($firstDogToCheck, $secondDogToCheck)) {
+    echo "{$firstDogToCheck->getName()} and {$secondDogToCheck->getName()} have same father, {$firstDogToCheck->getFather()}" . PHP_EOL;
+} else {
+    echo "{$firstDogToCheck->getName()} and {$secondDogToCheck->getName()} does not have same father" . PHP_EOL;
+    echo "{$firstDogToCheck->getName()} have {$firstDogToCheck->getFather()} as father, but {$secondDogToCheck->getName()} have {$firstDogToCheck->getFather()} as father" . PHP_EOL;
+}
